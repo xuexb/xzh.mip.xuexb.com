@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>接口测试</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        fieldset {
+            margin-top: 20px;
+            border: 1px solid  #ccc;
+            padding: 10px;
+        }
+        fieldset:first-child {
+            margin-top: 0;
+        }
+        legend {
+            display: inline;
+            width: auto;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>接口测试</h1>
+    <form action="/api/userinfo.json" method="POST">
+        <fieldset>
+            <legend>检查是否登录</legend>
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="type" value="check">
+                    <button type="submit" class="btn btn-primary">判断</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <form action="/api/userinfo.json" method="POST">
+        <fieldset>
+            <legend>退出</legend>
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="type" value="logout">
+                    <button type="submit" class="btn btn-primary">退出</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <form action="https://openapi.baidu.com/oauth/2.0/authorize" class="mt-5">
+        <fieldset>
+            <legend>打开授权页</legend>
+            <div class="form-group row">
+                <label for="client_id" class="col-sm-2 text-sm-right">client_id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="client_id" name="client_id" placeholder="环境变量中的 MIP_XZH_CLIENT_ID">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="response_type" value="code">
+                    <input type="hidden" name="scope" value="snsapi_userinfo">
+                    <input type="hidden" name="state" value="mip-login-xzh">
+                    <input type="hidden" name="redirect_uri" value="http://127.0.0.1:3001/">
+                    <button type="submit" class="btn btn-primary">授权</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <form action="/api/userinfo.json" class="mt-5" method="POST">
+        <fieldset>
+            <legend>登录</legend>
+            <p>
+                需要先进行授权，并把链接中的 <code>code</code> 参数写到下面。
+            </p>
+            <div class="form-group row">
+                <label for="code" class="col-sm-2 text-sm-right">code</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="code" name="code" placeholder="复制链接中的 code 参数">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" name="type" value="login">
+                    <input type="hidden" name="redirect_uri" value="http://127.0.0.1:3001/">
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

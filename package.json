@@ -1,0 +1,32 @@
+{
+  "name": "xzh.mip.xuexb.com",
+  "version": "1.0.0",
+  "description": "MIP 网站应用熊掌号登录示例",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuexb/xzh.mip.xuexb.com.git"
+  },
+  "keywords": [
+    "MIP",
+    "登录示例"
+  ],
+  "author": "xuexb <fe.xiaowu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xuexb/xzh.mip.xuexb.com/issues"
+  },
+  "homepage": "https://github.com/xuexb/xzh.mip.xuexb.com#readme",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-session2": "^2.2.5",
+    "koa-static": "^4.0.2",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  }
+}
