@@ -159,4 +159,11 @@ app.use(serve(__dirname));
 app.use(Api.routes());
 app.use(Api.allowedMethods());
 
+// 404
+app.use(async ctx => {
+    ctx.jsonp({
+        status: 404
+    });
+});
+
 app.listen(3001);
