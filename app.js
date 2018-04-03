@@ -60,7 +60,8 @@ Api.post('/api/userinfo.json', async ctx => {
 
         if (!userinfo) {
             return ctx.json({
-                status: 1
+                status: 0,
+                data:: null
             });
         }
         return ctx.json({
@@ -115,7 +116,7 @@ Api.post('/api/userinfo.json', async ctx => {
         catch (err) {
             console.error(err.error);
             return ctx.json({
-                status: 1,
+                status: 500,
                 data: {
                     msg: '登录失败',
                     statusCode: err.statusCode || 500
