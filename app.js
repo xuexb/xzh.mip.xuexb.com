@@ -130,8 +130,9 @@ Api.post('/api/userinfo.json', async ctx => {
             });
         }
         catch (err) {
+            console.error(err.error);
             return ctx.jsonp({
-                status: 0,
+                status: 1,
                 data: {
                     msg: '登录失败',
                     statusCode: err.statusCode || 500
@@ -148,7 +149,7 @@ Api.post('/api/userinfo.json', async ctx => {
     }
 
     return ctx.jsonp({
-        status: -1
+        status: 404
     });
 });
 
