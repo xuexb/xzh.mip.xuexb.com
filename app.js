@@ -32,23 +32,10 @@ app.use(session({
     expires: new Date('2020-01-01')
 }));
 
-// 注入 JSONP 方法
+// 注入 JSON 方法
 app.use(async (ctx, next) => {
     ctx.json = data => {
         ctx.body = JSON.stringify(data);
-    };
-
-    ctx.jsonp = data => {
-        if (ctx.query.callback) {
-            const cb = ctx.query.callback;
-            const body = JSON.stringify(data);
-
-            ctx.set('Content-Type', 'text/javascript; charset=utf-8');
-            ctx.body = `typeof ${cb} === 'function' && ${cb}(${body})`;
-        }
-        else {
-            ctx.json(data);
-        }
     };
 
     await next();
@@ -58,12 +45,8 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
     ctx.set('Content-Type', 'application/json; charset=utf-8');
     ctx.set('Cache-Control', 'no-cache,no-store');
-
-    // 非 JSONP 配置 CORS
-    if (!ctx.query.callback) {
-        ctx.set('Access-Control-Allow-Credentials', true);
-        ctx.set('Access-Control-Allow-Origin', ctx.header.origin || '*');
-    }
+    ctx.set('Access-Control-Allow-Credentials', true);
+    ctx.set('Access-Control-Allow-Origin', ctx.header.origin || '*');
 
     await next();
 });
@@ -76,11 +59,11 @@ Api.post('/api/userinfo.json', async ctx => {
         const userinfo = ctx.session.userinfo;
 
         if (!userinfo) {
-            return ctx.jsonp({
+            return ctx.json({
                 status: 1
             });
         }
-        return ctx.jsonp({
+        return ctx.json({
             status: 0,
             data: userinfo
         });
@@ -89,7 +72,7 @@ Api.post('/api/userinfo.json', async ctx => {
     // 登录授权
     if (query.type === 'login') {
         if (ctx.session.userinfo) {
-            return ctx.jsonp({
+            return ctx.json({
                 status: 0,
                 data: ctx.session.userinfo
             });
@@ -124,14 +107,14 @@ Api.post('/api/userinfo.json', async ctx => {
             // 记录状态
             ctx.session.userinfo = userinfo;
 
-            return ctx.jsonp({
+            return ctx.json({
                 status: 0,
                 data: userinfo
             });
         }
         catch (err) {
             console.error(err.error);
-            return ctx.jsonp({
+            return ctx.json({
                 status: 1,
                 data: {
                     msg: '登录失败',
@@ -143,12 +126,12 @@ Api.post('/api/userinfo.json', async ctx => {
 
     if (query.type === 'logout') {
         ctx.session.userinfo = null;
-        return ctx.jsonp({
+        return ctx.json({
             status: 0
         });
     }
 
-    return ctx.jsonp({
+    return ctx.json({
         status: 404
     });
 });
@@ -162,7 +145,7 @@ app.use(Api.allowedMethods());
 
 // 404
 app.use(async ctx => {
-    ctx.jsonp({
+    ctx.json({
         status: 404
     });
 });
