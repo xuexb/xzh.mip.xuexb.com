@@ -61,7 +61,7 @@ Api.post('/api/userinfo.json', async ctx => {
         if (!userinfo) {
             return ctx.json({
                 status: 0,
-                data:: null
+                data: null
             });
         }
         return ctx.json({
