@@ -128,7 +128,10 @@ Api.post('/api/userinfo.json', async ctx => {
     if (query.type === 'logout') {
         ctx.session.userinfo = null;
         return ctx.json({
-            status: 0
+            status: 0,
+            data: {
+                url: 'https://admin.static.xuexb.com/html/xuexb/detail.html'
+            }
         });
     }
 
