@@ -4,7 +4,7 @@
  */
 
 const Koa = require('koa');
-const session = require('koa-session2');
+const session = require('./session');
 const Router = require('koa-router');
 const Api = new Router();
 const serve = require('koa-static');
@@ -29,7 +29,7 @@ app.use(bodyParser());
 
 // 注入 session
 app.use(session({
-    expires: new Date('2020-01-01')
+    expires: new Date('2030-01-01')
 }));
 
 // 注入 JSON 方法
@@ -102,7 +102,8 @@ Api.post('/api/userinfo.json', async ctx => {
             const userinfo = {
                 name: data.nickname,
                 avatar: data.headimgurl,
-                sex: data.sex
+                sex: data.sex,
+                accessToken: ctx.accessToken
             };
 
             // 记录状态
