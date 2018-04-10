@@ -16,7 +16,7 @@ module.exports = (opts = {}) => {
         //     id = ctx.query.accessToken;
         // }
         // 注入 POST.accessToken ，依赖 koa-bodyparser
-        else if (!id && ctx.request && ctx.request.body && ctx.request.body.accessToken) {
+        if (!id && ctx.request && ctx.request.body && ctx.request.body.accessToken) {
             id = ctx.request.body.accessToken;
         }
 
