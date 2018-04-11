@@ -59,7 +59,7 @@ POST
 ```json
 {
     "status": 0,
-    "data": null
+    "data": {}
 }
 ```
 
@@ -90,7 +90,8 @@ POST
 {
     "status": 0,
     "data": {
-        "name": "mip"
+        "name": "mip",
+        "accessToken": "123456"
     }
 }
 ```
@@ -122,7 +123,8 @@ POST
 
 ```json
 {
-    "status": 0
+    "status": 0,
+    "url": "https://admin.static.xuexb.com/html/xuexb/detail.html"
 }
 ```
 
