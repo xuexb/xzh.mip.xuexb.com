@@ -11,13 +11,9 @@ module.exports = (opts = {}) => {
     return async (ctx, next) => {
         let id = ctx.cookies.get(key, opts);
 
-        // 注入 GET.accessToken
-        // if (!id && ctx.query.accessToken) {
-        //     id = ctx.query.accessToken;
-        // }
-        // 注入 POST.accessToken ，依赖 koa-bodyparser
-        if (!id && ctx.request && ctx.request.body && ctx.request.body.accessToken) {
-            id = ctx.request.body.accessToken;
+        // 注入 POST.sessionId ，依赖 koa-bodyparser
+        if (!id && ctx.request && ctx.request.body && ctx.request.body.sessionId) {
+            id = ctx.request.body.sessionId;
         }
 
         if (!id) {
@@ -33,7 +29,7 @@ module.exports = (opts = {}) => {
         }
 
         // 注入变量
-        ctx.accessToken = id;
+        ctx.sessionId = id;
 
         const old = JSON.stringify(ctx.session);
 

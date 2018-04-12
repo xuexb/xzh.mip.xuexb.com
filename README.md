@@ -91,7 +91,7 @@ POST
     "status": 0,
     "data": {
         "name": "mip",
-        "accessToken": "123456"
+        "sessionId": "123456"
     }
 }
 ```

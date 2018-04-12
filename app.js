@@ -103,7 +103,7 @@ Api.post('/api/userinfo.json', async ctx => {
                 name: data.nickname,
                 avatar: data.headimgurl,
                 sex: data.sex,
-                accessToken: ctx.accessToken
+                sessionId: ctx.sessionId
             };
 
             // 记录状态
