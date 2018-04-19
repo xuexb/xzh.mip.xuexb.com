@@ -35,6 +35,7 @@ app.use(session({
 // 注入 JSON 方法
 app.use(async (ctx, next) => {
     ctx.json = data => {
+        data.sessionId = ctx.sessionId;
         ctx.body = JSON.stringify(data);
     };
 
@@ -102,8 +103,7 @@ Api.post('/api/userinfo.json', async ctx => {
             const userinfo = {
                 name: data.nickname,
                 avatar: data.headimgurl,
-                sex: data.sex,
-                sessionId: ctx.sessionId
+                sex: data.sex
             };
 
             // 记录状态
@@ -115,7 +115,6 @@ Api.post('/api/userinfo.json', async ctx => {
             });
         }
         catch (err) {
-            console.error(err.error);
             return ctx.json({
                 status: 500,
                 data: {
@@ -131,7 +130,7 @@ Api.post('/api/userinfo.json', async ctx => {
         return ctx.json({
             status: 0,
             data: {
-                url: 'https://admin.static.xuexb.com/html/xuexb/detail.html'
+                url: `https://admin.static.xuexb.com/html/xuexb/detail.html?r=${Date.now()}`
             }
         });
     }
