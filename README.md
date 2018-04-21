@@ -42,6 +42,7 @@ POST
 参数名 | 说明
 --- | ---
 `type` | `check` - 固定参数
+`sessionId` | `xxx` - 会话标识
 
 #### 返回值
 
@@ -49,6 +50,7 @@ POST
 ```json
 {
     "status": 0,
+    "sessionId": "xxx",
     "data": {
         "name": "mip"
     }
@@ -59,7 +61,8 @@ POST
 ```json
 {
     "status": 0,
-    "data": {}
+    "sessionId": "xxx",
+    "data": null
 }
 ```
 
@@ -89,9 +92,9 @@ POST
 ```json
 {
     "status": 0,
+    "sessionId": "123456",
     "data": {
-        "name": "mip",
-        "sessionId": "123456"
+        "name": "mip"
     }
 }
 ```
