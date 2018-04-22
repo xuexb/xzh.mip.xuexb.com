@@ -52,7 +52,9 @@ POST
     "status": 0,
     "sessionId": "xxx",
     "data": {
-        "name": "mip"
+        "name": "mip",
+        "xxx2": "xxx",
+        "key": "value"
     }
 }
 ```
@@ -127,7 +129,9 @@ POST
 ```json
 {
     "status": 0,
-    "url": "https://admin.static.xuexb.com/html/xuexb/detail.html"
+    "data": {
+        "url": "https://admin.static.xuexb.com/html/xuexb/detail.html"
+    }
 }
 ```
 
